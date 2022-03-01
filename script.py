@@ -10,6 +10,7 @@ import requests
 import json
 from datetime import datetime
 import pandas as pd
+import os
 
 save_path = '/data'
 status = 0
