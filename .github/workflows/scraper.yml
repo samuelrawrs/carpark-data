@@ -26,5 +26,5 @@ jobs:
         uses: EndBug/add-and-commit@v8
         with:
           default_author: github_actions
-          cwd:'./data/'
+          cwd: './data/'
         
