@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[32]:
+
+
+## https://api.data.gov.sg/v1/transport/carpark-availability
+
+import requests
+import json
+from datetime import datetime
+import pandas as pd
+
+
+status = 0
+
+while status != 200:
+    response = requests.get("https://api.data.gov.sg/v1/transport/carpark-availability")
+    status = response.status_code
+
+now = datetime.now().strftime("%d-%m-%Y %H%M%S")
+
+file_name = "Results " + now + ".json"
+
+text = json.dumps(response.json(), sort_keys=True, indent=4)
+
+with open(file_name, "w") as results_file:
+    results_file.write(text)
+
