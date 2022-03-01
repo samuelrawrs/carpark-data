@@ -11,7 +11,7 @@ import json
 from datetime import datetime
 import pandas as pd
 
-
+save_path = '/data'
 status = 0
 
 while status != 200:
@@ -21,7 +21,7 @@ while status != 200:
 now = datetime.now().strftime("%d-%m-%Y %H%M%S")
 
 file_name = "Results " + now + ".json"
-
+file_name = os.path.join(save_path,file_name)
 text = json.dumps(response.json(), sort_keys=True, indent=4)
 
 with open(file_name, "w") as results_file:
