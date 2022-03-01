@@ -27,6 +27,8 @@ jobs:
         run: sudo timedatectl set-timezone Asia/Singapore
       - name: Run Scraper
         run: python script.py
+      - name: Run Data collator
+        run: python data_parser_usingdict.py
       - name: Commit files
         uses: EndBug/add-and-commit@v8
         with:
