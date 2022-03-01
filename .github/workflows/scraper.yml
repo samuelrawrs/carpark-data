@@ -2,7 +2,7 @@ name: store data from "https://api.data.gov.sg/v1/transport/carpark-availability
 
 on:
   schedule:
-    - cron: "* */1 * * *"
+    - cron: "0 * * * *"
   workflow_dispatch:
   
 env:
