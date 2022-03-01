@@ -9,7 +9,7 @@ env:
   ACTIONS_ALLOW_UNSECURE_COMMANDS: true
 
 jobs:
-  hello_world_job:
+  scraper:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
