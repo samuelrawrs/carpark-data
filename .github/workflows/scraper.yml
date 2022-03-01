@@ -20,8 +20,8 @@ jobs:
           python-version: '3.8'
       - name: Install requirements
         run: pip install -r requirements.txt
-      - name : Check timedate
-        run: timedatectl
+      - name : Set correct time
+        run: sudo timedatectl set-timezone Asia/Singapore
       - name: Run Scraper
         run: python script.py
       - name: Commit files
