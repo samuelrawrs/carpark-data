@@ -12,7 +12,7 @@ from datetime import datetime
 import pandas as pd
 import os
 
-save_path = '/data'
+save_path = './data'
 status = 0
 
 while status != 200:
