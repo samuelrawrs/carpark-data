@@ -69,7 +69,7 @@ def jsonfile_to_nextdict(filename):
 
 def combine_dict(d1, d2):
     d3 = {x: d1.get(x, 0) + d2.get(x, 0) for x in set(d1).union(d2)}
-    d3["timestamp"] = d2["timestamp"]
+    d3["timestamp"] = d2["timestamp"] #last updated time
     return(d3)
 
 
@@ -101,7 +101,7 @@ def main():
             new_carpark_dict = jsonfile_to_nextdict(data_dict[i])
             d = combine_dict(d,new_carpark_dict)
         new_json = json.dumps(d, indent = 4, sort_keys = True, default = str)
-        f = open("newoutput.json", "w")
+        f = open("final_carpark_data.json", "w")
         f.write(new_json)
         f.close()
 
