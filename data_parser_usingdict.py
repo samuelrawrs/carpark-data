@@ -28,7 +28,7 @@ def datadate_to_datetime(list): #convert file names to datetime
     return list3
 
 
-def jsonfile_to_dict(filename):
+def jsonfile_to_firstdict(filename):
         with open(filename, 'r') as file:
             data = json.loads(file.read())
         pairs = data.items()
@@ -48,8 +48,28 @@ def jsonfile_to_dict(filename):
 
         return carpark_dict
 
+def jsonfile_to_nextdict(filename):
+        with open(filename, 'r') as file:
+            data = json.loads(file.read())
+        pairs = data.items()
+        new_dict={}
+        carpark_dict={}
+
+        for k, v in pairs: #items, etc...
+            for x in v: #somehow this is a list wth
+                new_dict = x
+
+        last_global_update = new_dict["timestamp"]
+        last_global_update = convert_data_time(last_global_update) ## update file with update time
+        carpark_dict["timestamp"] = str(last_global_update)
+
+        for a in new_dict["carpark_data"]:
+            carpark_dict[a["carpark_number"]] = [a["carpark_info"][0]["lots_available"], convert_data_time(a["update_datetime"])]
+        return carpark_dict
+
 def combine_dict(d1, d2):
     d3 = {x: d1.get(x, 0) + d2.get(x, 0) for x in set(d1).union(d2)}
+    d3["timestamp"] = d2["timestamp"]
     return(d3)
 
 
@@ -78,7 +98,7 @@ def main():
         d = old_data
         final_dict = {}
         for i in new_results_list: #now we can open the data files in the right order to append
-            new_carpark_dict = jsonfile_to_dict(data_dict[i])
+            new_carpark_dict = jsonfile_to_nextdict(data_dict[i])
             d = combine_dict(d,new_carpark_dict)
         new_json = json.dumps(d, indent = 4, sort_keys = True, default = str)
         f = open("newoutput.json", "w")
@@ -89,7 +109,7 @@ def main():
 
     except IOError: #remake carpark_data.json from 01-03-2022 135932 results
         print("File not found, making a new file.")
-        first_carpark_dict = jsonfile_to_dict('data/Results 01-03-2022 135932.json')
+        first_carpark_dict = jsonfile_to_firstdict('data/Results 01-03-2022 135932.json')
         json_object = json.dumps(first_carpark_dict, indent = 4, sort_keys = True, default = str)
         f = open("carpark_data.json", "a")
         f.write(json_object)
