@@ -18,7 +18,9 @@ carpark_number: [
 				...]
 ```
 The end of the file also containts a `timestamp` that indicates when the file was last updated. Admittedly, I would've prefered for the appending of `lots_available` to be in the form of a nested list to seperate each timing nicely but unfortunately this was the best way I could find combining dictionaries with similar keys.
-								
+
+## Note
+Stopped on 8/3/2022. Github actions failed after new carparks was added to the data and broke my code OOPS. looks like combining dictionaries with different keys was the problem... D:							
 							
 ## Future Developments
 ~~- Parse data from /data to create a master file for each carpark.~~ done!
